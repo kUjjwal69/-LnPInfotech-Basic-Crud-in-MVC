@@ -1,0 +1,93 @@
+﻿@model List<LnP_Infotech_ujjwal_Kumar.Models.Product>
+
+<h2>Products</h2>
+
+<!-- FILTER FORM -->
+<form method="get">
+
+    <input name="search"
+           value="@Context.Request.Query["search"]"
+           placeholder="Search Name" />
+
+    <select name="categoryId">
+        <option value="">All Categories</option>
+
+        @foreach (var c in ViewBag.Categories)
+        {
+            <option value="@c.CategoryId">
+                @c.CategoryName
+            </option>
+        }
+    </select>
+
+    <input name="minQty"
+           type="number"
+           value="@Context.Request.Query["minQty"]"
+           placeholder="Min Qty" />
+
+    <input name="maxPrice"
+           type="number"
+           value="@Context.Request.Query["maxPrice"]"
+           placeholder="Max Price" />
+
+    <button type="submit">Filter</button>
+
+</form>
+
+<hr />
+
+<!-- TABLE -->
+<table border="1" cellpadding="8">
+
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Categories</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.ProductName</td>
+            <td>@p.Price</td>
+            <td>@p.Quantity</td>
+
+            <td>
+                @foreach (var pc in p.ProductCategories)
+                {
+                    @pc.Category.CategoryName <text>, </text>
+                }
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@p.ProductId">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@p.ProductId">Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+
+<a asp-action="Create">➕ Add New Product</a>
+
+<hr />
+
+<!-- PAGINATION -->
+@{
+    int total = ViewBag.TotalCount;
+    int size = ViewBag.PageSize;
+    int page = ViewBag.Page;
+
+    int pages = (int)Math.Ceiling((double)total / size);
+}
+
+<div>
+    @for (int i = 1; i <= pages; i++)
+    {
+        <a href="?page=@i"> @i </a>
+    }
+</div>

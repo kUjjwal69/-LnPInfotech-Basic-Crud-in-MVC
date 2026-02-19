@@ -1,0 +1,19 @@
+﻿@model LnP_Infotech_ujjwal_Kumar.Models.Category
+
+<h2>Delete Category</h2>
+
+<p>Are you sure you want to delete this?</p>
+
+<b>@Model.CategoryName</b>
+
+<form asp-action="Delete" method="post">
+
+    <input type="hidden" name="id" value="@Model.CategoryId" />
+
+    <br />
+
+    <button type="submit">Yes, Delete</button>
+
+</form>
+
+<a asp-action="Index">Cancel</a>

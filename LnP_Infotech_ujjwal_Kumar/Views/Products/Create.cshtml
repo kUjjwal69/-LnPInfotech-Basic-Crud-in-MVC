@@ -1,0 +1,47 @@
+﻿@model LnP_Infotech_ujjwal_Kumar.Models.Product
+
+<h2>Add Product</h2>
+
+<form asp-action="Create" method="post">
+
+    <div>
+        Name:
+        <input asp-for="ProductName" />
+        <span asp-validation-for="ProductName" style="color:red"></span>
+    </div>
+
+    <div>
+        Description:
+        <input asp-for="Description" />
+        <span asp-validation-for="Description" style="color:red"></span>
+    </div>
+
+    <div>
+        Price:
+        <input asp-for="Price" />
+        <span asp-validation-for="Price" style="color:red"></span>
+    </div>
+
+    <div>
+        Quantity:
+        <input asp-for="Quantity" />
+        <span asp-validation-for="Quantity" style="color:red"></span>
+    </div>
+
+    <div>
+        Categories:
+        <select name="categoryIds" multiple>
+            @foreach (var c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">
+                    @c.CategoryName
+                </option>
+            }
+        </select>
+    </div>
+
+    <br />
+
+    <button type="submit">Save</button>
+
+</form>

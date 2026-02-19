@@ -1,0 +1,21 @@
+﻿@model LnP_Infotech_ujjwal_Kumar.Models.Category
+
+<h2>Add Category</h2>
+
+<form asp-action="Create" method="post">
+
+    <div>
+        Name:
+        <input asp-for="CategoryName" />
+    </div>
+
+    <div>
+        Description:
+        <input asp-for="Description" />
+    </div>
+
+    <br />
+
+    <button type="submit">Save</button>
+
+</form>

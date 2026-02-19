@@ -1,0 +1,42 @@
+﻿@model LnP_Infotech_ujjwal_Kumar.Models.Product
+
+<h2>Edit Product</h2>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="ProductId" />
+
+    <div>
+        Name:
+        <input asp-for="ProductName" />
+    </div>
+
+    <div>
+        Price:
+        <input asp-for="Price" />
+    </div>
+
+    <div>
+        Quantity:
+        <input asp-for="Quantity" />
+    </div>
+
+    <div>
+        Categories:
+        <select name="categoryIds" multiple>
+
+            @foreach (var c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">
+                    @c.CategoryName
+                </option>
+            }
+
+        </select>
+    </div>
+
+    <br />
+
+    <button type="submit">Update</button>
+
+</form>
